@@ -1,0 +1,54 @@
+version: '3.4'
+services:
+  mariadb:
+    image: mariadb:10
+    ports:
+      - 9600:3306
+    networks:
+      todo-net:
+        aliases:
+          - todo-mariadb
+    environment:
+      MYSQL_DATABASE: "todo-solution"
+      MYSQL_USER: "todo"
+      MYSQL_PASSWORD: "todo2022"
+      MYSQL_ROOT_PASSWORD: "todo2022"
+      TZ: Asiz:Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --character-set-client-handshake=FALSE
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+          VARIANT: "11-bullseye"
+          INSTALL_MAVEN: "false"
+          INSTALL_GRADLE: "true"
+          NODE_VERSION: 16
+    networks:
+      todo-net:
+        aliases:
+          - todo-app
+    environment:
+      - DB_URL=jdbc:mariadb://todo-mariadb:3306/todo-solution?serverTimezone=UTC&characterEncoding=UTF-8
+      - DB_USER=todo
+      - DB_PASSWORD=todo2022
+    volumes:
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/work:cached
+      - type: bind
+        source: $HOME/.ssh
+        target: /home/vscode/.ssh
+
+    # Overrides default command so things don't shut down after the process ends.
+    #entrypoint: /usr/local/share/docker-init.sh
+    command: sleep infinity
+
+networks:
+  todo-net:
+    driver: bridge
