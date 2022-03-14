@@ -24,6 +24,9 @@ public class RefactoringTests {
     defender = attacker.atack(defender);
     assertEquals(0, defender.getHelth());
 
+    int loseExpr = 3;
+    int winExpr = 10;
+
     // TODO 죽은 캐릭터의 경험치 업데이트
 
     // TODO 이긴 캐릭터의 경험치 업데이트
@@ -52,9 +55,10 @@ public class RefactoringTests {
     public Man atack(Man defender) {
       int powerSum = this.power + this.sword.getPower();
       defender.changeStatus(new Status());
-      int remainHelth = defender.getHelth() - powerSum;
+      int remainHealth = defender.getHelth() - powerSum;
       // FIXME 3항 연산 개선
-      remainHelth = remainHelth < 0 ? 0 : remainHelth;
+      remainHealth = calHealth(remainHealth);
+      
       return new Man(defender.getPower(), remainHelth, defender.getSword());
     }
 
@@ -66,7 +70,18 @@ public class RefactoringTests {
 
   @RequiredArgsConstructor
   public class Status {
+      public final int expr;
+      public final String stat;
+      public final int level;      
+  }
 
+  protected int calHealth(remainHelth){
+
+    if(remainHealth>0){
+      return remainHealth;
+    }else{
+      return 0;
+    }
   }
 
 }
