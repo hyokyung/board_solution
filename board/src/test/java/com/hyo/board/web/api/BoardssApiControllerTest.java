@@ -83,7 +83,7 @@ public class BoardssApiControllerTest {
                                             .content(expectedContent)
                                             .build();
 
-      Strng url = "http://localhost:"+port+"/api/v1/writes/"+updateId;
+      String url = "http://localhost:"+port+"/api/v1/writes/"+updateId;
 
       HttpEntity<BoardsUpdatesRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
