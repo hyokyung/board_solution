@@ -1,9 +1,13 @@
 package com.hyo.board.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import com.hyo.board.domain.boards.Boards;
 import com.hyo.board.domain.boards.BoardsRepository;
+import com.hyo.board.web.dto.BoardsListResponseDto;
 import com.hyo.board.web.dto.BoardsResponseDto;
 import com.hyo.board.web.dto.BoardsSaveRequestDto;
 import com.hyo.board.web.dto.BoardsUpdatesRequestDto;
@@ -34,6 +38,11 @@ public class BoardsService {
   public BoardsResponseDto findById (Long id){
     Boards entity = boardsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" +id));
     return new BoardsResponseDto(entity);
+  }
+
+  @Transactional
+  public List<BoardsListResponseDto> findAllDesc(){
+    return boardsRepository.findAllDesc().stream().map(BoardsListResponseDto::new).collect(Collectors.toList());
   }
 
 }
