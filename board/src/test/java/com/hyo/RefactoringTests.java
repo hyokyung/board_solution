@@ -54,12 +54,12 @@ public class RefactoringTests {
 
     public Man atack(Man defender) {
       int powerSum = this.power + this.sword.getPower();
-      defender.changeStatus(new Status());
+   //   defender.changeStatus(new Status());
       int remainHealth = defender.getHelth() - powerSum;
       // FIXME 3항 연산 개선
-      remainHealth = calHealth(remainHealth);
-      
-      return new Man(defender.getPower(), remainHelth, defender.getSword());
+     // remainHealth = calHealth(remainHealth);
+
+      return new Man(defender.getPower(), 0, defender.getSword());
     }
 
     protected void changeStatus(Status changedStatus) {
@@ -72,16 +72,9 @@ public class RefactoringTests {
   public class Status {
       public final int expr;
       public final String stat;
-      public final int level;      
+      public final int level;
   }
 
-  protected int calHealth(remainHelth){
 
-    if(remainHealth>0){
-      return remainHealth;
-    }else{
-      return 0;
-    }
-  }
 
 }

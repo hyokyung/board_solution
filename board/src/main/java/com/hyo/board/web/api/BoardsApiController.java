@@ -3,6 +3,7 @@ package com.hyo.board.web.api;
 import com.hyo.board.service.BoardsService;
 import com.hyo.board.web.dto.BoardsResponseDto;
 import com.hyo.board.web.dto.BoardsSaveRequestDto;
+import com.hyo.board.web.dto.BoardsUpdatesRequestDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
