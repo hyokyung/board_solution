@@ -45,4 +45,10 @@ public class BoardsService {
     return boardsRepository.findAllDesc().stream().map(BoardsListResponseDto::new).collect(Collectors.toList());
   }
 
+  @Transactional
+  public void delete(Long id){
+    Boards boards = boardsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" +id));
+    boardsRepository.delete(boards);
+  }
+
 }
