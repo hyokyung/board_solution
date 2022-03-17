@@ -24,8 +24,9 @@ public class IndexController {
   public String index(Model model){
 
     model.addAttribute("boards", boardsService.findAllDesc());
-    SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
+    //FIXME user 못받아오는거 수정하기 왜 못받아올까 ㅠㅠ
+    SessionUser user = (SessionUser) httpSession.getAttribute("user");
     if(user != null){
       model.addAttribute("userName", user.getName());
     }
