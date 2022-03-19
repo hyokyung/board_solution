@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+  implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.6.3'
   implementation 'org.springframework.boot:spring-boot-starter-security'
   implementation 'org.springframework.session:spring-session-jdbc'
 	compileOnly 'org.projectlombok:lombok'
