@@ -17,40 +17,41 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BaseTimeEntity{
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class User extends BaseTimeEntity {
 
-  @Column(nullable = false)
-  private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Column(nullable = false)
-  private String email;
+    @Column(nullable = false)
+    private String name;
 
-  @Column
-  private String picture;
+    @Column(nullable = false)
+    private String email;
 
-  @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
-  private Role role;
+    @Column
+    private String picture;
 
-  @Builder
-  public User(String name, String email, String picture, Role role){
-    this.name = name;
-    this.email = email;
-    this.picture = picture;
-    this.role = role;
-  }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
-  public User update(String name, String picture){
-    this.name = name;
-    this.picture = picture;
+    @Builder
+    public User(String name, String email, String picture, Role role) {
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.role = role;
+    }
 
-    return this;
-  }
+    public User update(String name, String picture) {
+        this.name = name;
+        this.picture = picture;
 
-  public String getRoleKey(){
-    return this.role.getKey();
-  }
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 }

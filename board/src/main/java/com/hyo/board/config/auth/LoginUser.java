@@ -1,4 +1,4 @@
-package com.config.auth;
+package com.hyo.board.config.auth;
 
 import java.lang.annotation.Target;
 import java.lang.annotation.RetentionPolicy;
@@ -8,5 +8,4 @@ import java.lang.annotation.Retention;
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LoginUser {
-
 }

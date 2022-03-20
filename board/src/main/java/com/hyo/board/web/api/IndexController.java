@@ -1,8 +1,7 @@
 package com.hyo.board.web.api;
 
-import javax.servlet.http.HttpSession;
-
-import com.config.auth.dto.SessionUser;
+import com.hyo.board.config.auth.LoginUser;
+import com.hyo.board.config.auth.dto.SessionUser;
 import com.hyo.board.service.BoardsService;
 import com.hyo.board.web.dto.BoardsResponseDto;
 
@@ -18,19 +17,14 @@ import lombok.RequiredArgsConstructor;
 public class IndexController {
 
   private final BoardsService boardsService;
-  private final HttpSession httpSession;
 
   @GetMapping("/")
-  public String index(Model model){
-
-    model.addAttribute("boards", boardsService.findAllDesc());
-    SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-    if(user != null){
-      model.addAttribute("userName", user.getName());
-    }
-
-    return "index";
+  public String index(Model model, @LoginUser SessionUser user) {
+      model.addAttribute("posts", boardsService.findAllDesc());
+      if (user != null) {
+          model.addAttribute("userName", user.getName());
+      }
+      return "index";
   }
 
   @GetMapping("/boards/save")
