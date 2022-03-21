@@ -3,8 +3,6 @@ package com.hyo.board.web.api;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.hyo.board.web.api.payload.RegistrationPayload;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class RegistrationControllerTests {
 
   @Test
   public void register_blankUsername_shouldFailAndReturn400() throws Exception {
-    RegistrationPayload payload = RegistrationPayload.builder().build();
+   // RegistrationPayload payload = RegistrationPayload.builder().build();
   //   mvc.perform(
   //     // post(TEST_URL)
   //     //   .contentType(MediaType.APPLICATION_JSON)
