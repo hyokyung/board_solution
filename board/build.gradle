@@ -57,8 +57,10 @@ tasks.named('test') {
 }
 
 jar {
+    manifest {
+        attributes (
+                'Main-Class': 'com.mypackage.MyClass'
+        )
+    }
     enabled = false
-}
-manifest {
-        attributes 'Main-Class': 'com.package.MainName'
 }
