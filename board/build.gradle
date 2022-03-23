@@ -59,6 +59,6 @@ tasks.named('test') {
 }
 
 
-jar {
+war {
   enabled=false
 }
