@@ -6,7 +6,7 @@ jdk:
    only:
      - master
 
-#travis CI 서버의 HOME
+#travis CI 서버의 HOME!
 cache:
   directories:
    - '$HOME/.m2/repository'
