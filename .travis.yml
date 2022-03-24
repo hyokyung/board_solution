@@ -15,7 +15,7 @@ cache:
 script: "cd board ./gradlew clean build"
 
 before_deploy:
-- cd board zip -r hyo-springboot2-webservice *
+- zip -r hyo-springboot2-webservice *
 - mkdir -p before_deploy
 - mv hyo-springboot2-webservice.zip deploy/hyo-springboot2-webservice.zip
 
