@@ -14,6 +14,32 @@ cache:
 
 script: "cd board ./gradlew clean build"
 
+before_deploy:
+- cd board zip -r hyo-springboot2-webservice *
+- mkdir -p before_deploy
+- mv hyo-springboot2-webservice.zip deploy/hyo-springboot2-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY #travis repo setting에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: hyo-springboot-build
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
+  -provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY #travis repo setting에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: hyo-springboot-build
+    key: hyo-springboot2-webservice.zip
+    bundle_type: zip
+    application: hyo-springboot2-webservice
+    deployment_group: hyo-springboot2-webservice-deployment_group
+    region: ap-northeast-2
+    wait-until-deployed: true
+
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
