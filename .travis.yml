@@ -18,7 +18,7 @@ before_deploy:
 - pwd
 - zip -r hyo-springboot2-webservice *
 - mkdir -p before_deploy
-- mv hyo-springboot2-webservice.zip deploy/hyo-springboot2-webservice.zip
+- mv hyo-springboot2-webservice.zip before_deploy/hyo-springboot2-webservice.zip
 
 deploy:
   - provider: s3
